@@ -454,17 +454,16 @@ class CardTransitions {
     const brands = CONFIG.creator.brandPartners.map((name) => ({
       name,
       domain: logoDomains[name],
-      logoDevUrl: logoDomains[name] ? this._getBrandLogoDevUrl(logoDomains[name]) : '',
+      logoUrl: logoDomains[name] ? this._getBrandLogoUrl(logoDomains[name]) : '',
       initials: this._getBrandInitials(name),
     }));
 
     this.workStackOverlay.className = 'page-overlay creator-kit-page';
     this.workStackOverlay.innerHTML = `
-      <div class="creator-kit">
+      <div class="creator-kit creator-kit--brands">
         <header class="creator-kit__header">
           <p class="creator-kit__eyebrow">Partnership experience</p>
           <h2 class="creator-kit__title">${cfg.data.stackName}</h2>
-          <p class="creator-kit__intro">${brands.length} brands, arranged by broad mainstream recognition.</p>
         </header>
         <div class="creator-brand-grid creator-brand-grid--logos" aria-label="Brand collaboration logo grid">
           ${brands.map((brand, index) => `
@@ -473,20 +472,24 @@ class CardTransitions {
                 <span class="creator-brand-logo-card__fallback">${brand.initials}</span>
                 ${brand.domain ? `
                   <img
-                    src="${this._getBrandLogoUrl(brand.domain)}"
+                    src="${brand.logoUrl}"
                     alt=""
                     loading="lazy"
                     referrerpolicy="no-referrer"
-                    data-logo-source="favicon"
-                    data-logo-dev-src="${brand.logoDevUrl}"
-                    onload="if (this.dataset.logoSource === 'favicon' && (this.naturalWidth < 64 || this.naturalHeight < 64) && this.dataset.logoDevSrc) { this.dataset.logoSource = 'logo-dev'; this.src = this.dataset.logoDevSrc; } else if (this.dataset.logoSource === 'logo-dev' && (this.naturalWidth < 64 || this.naturalHeight < 64)) { this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback'); }"
-                    onerror="if (this.dataset.logoSource === 'favicon' && this.dataset.logoDevSrc) { this.dataset.logoSource = 'logo-dev'; this.src = this.dataset.logoDevSrc; } else { this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback'); }"
+                    onload="if (this.naturalWidth < 64 || this.naturalHeight < 64) { this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback'); }"
+                    onerror="this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback');"
                   >
                 ` : ''}
               </div>
               <h3>${this._escapeHtml(brand.name)}</h3>
             </article>
           `).join('')}
+          <article class="creator-brand-logo-card creator-brand-logo-card--more" style="--brand-rank: ${brands.length + 1}">
+            <div class="creator-brand-logo-card__mark" aria-hidden="true">
+              <span class="creator-brand-logo-card__more-text">and<br>many<br>more</span>
+            </div>
+            <h3>More Collabs</h3>
+          </article>
         </div>
       </div>
     `;
@@ -496,17 +499,14 @@ class CardTransitions {
   }
 
   _getBrandLogoUrl(domain) {
-    return `https://www.google.com/s2/favicons?sz=128&domain=${encodeURIComponent(domain)}`;
-  }
-
-  _getBrandLogoDevUrl(domain) {
     const token = CONFIG.creator.logoDevToken;
     if (!token) return '';
 
     const params = new URLSearchParams({
       token,
-      size: '128',
+      size: '256',
       format: 'png',
+      theme: 'light',
       fallback: '404',
     });
 

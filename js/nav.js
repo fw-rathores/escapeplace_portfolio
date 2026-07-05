@@ -52,7 +52,7 @@ class Navigation {
       return;
     }
 
-    const el = document.querySelector(`[data-element-id="${elementId}"]`);
+    const el = document.querySelector(`.canvas-element[data-element-id="${elementId}"]`);
     const x = Number(el?.dataset.originX);
     const y = Number(el?.dataset.originY);
 

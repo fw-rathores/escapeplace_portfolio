@@ -817,6 +817,46 @@
   color: var(--color-ink-soft);
 }
 
+.creator-kit--brands {
+  position: relative;
+  width: min(1160px, calc(100vw - 72px));
+  padding: clamp(96px, 13vh, 148px) 0 clamp(88px, 10vh, 128px);
+}
+
+.creator-kit--brands .creator-kit__header {
+  max-width: 760px;
+  margin-bottom: clamp(48px, 6vw, 78px);
+}
+
+.creator-kit--brands::before,
+.creator-kit--brands::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.creator-kit--brands::before {
+  top: clamp(118px, 13vh, 164px);
+  right: min(5vw, 48px);
+  width: clamp(54px, 6vw, 86px);
+  height: clamp(16px, 2vw, 24px);
+  border-radius: 999px;
+  background: rgba(248, 198, 20, 0.32);
+  transform: rotate(8deg);
+}
+
+.creator-kit--brands::after {
+  top: clamp(225px, 28vh, 310px);
+  left: min(4vw, 42px);
+  width: clamp(34px, 4vw, 52px);
+  height: clamp(34px, 4vw, 52px);
+  border: 1px solid rgba(26, 26, 26, 0.09);
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(234, 137, 185, 0.18), rgba(108, 194, 234, 0.16));
+  transform: rotate(-10deg);
+}
+
 .creator-kit--genres .creator-kit__header {
   max-width: 820px;
   margin-left: auto;
@@ -1017,52 +1057,99 @@
 .creator-brand-grid--logos {
   grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
   gap: 18px 14px;
-  align-items: start;
+  align-items: stretch;
+  justify-items: center;
+}
+
+.creator-kit--brands .creator-brand-grid--logos {
+  --brand-logo-tile-size: clamp(112px, 10vw, 148px);
+  --brand-logo-label-height: 34px;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: clamp(28px, 3.4vw, 44px) clamp(20px, 2.4vw, 34px);
 }
 
 .creator-brand-logo-card {
+  width: 100%;
+  height: 100%;
   min-width: 0;
+  position: relative;
   display: grid;
-  grid-template-rows: auto minmax(34px, auto);
+  grid-template-rows: var(--brand-logo-tile-size, auto) var(--brand-logo-label-height, 30px);
   gap: 9px;
-  align-items: start;
+  align-items: stretch;
   text-align: center;
+  overflow: visible;
 }
 
 .creator-brand-logo-card__mark {
   position: relative;
   width: 100%;
-  aspect-ratio: 1;
+  height: var(--brand-logo-tile-size, auto);
+  aspect-ratio: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(16px, 2vw, 24px);
+  padding: clamp(10px, 1.4vw, 14px);
   border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 238, 0.72)),
-    radial-gradient(circle at 18% 18%, rgba(248, 198, 20, 0.2), transparent 38%);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 22px rgba(26, 26, 26, 0.06);
-  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 22px rgba(26, 26, 26, 0.06);
+  overflow: visible;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.creator-brand-logo-card:nth-child(5n) .creator-brand-logo-card__mark {
+  transform: rotate(-0.8deg);
+}
+
+.creator-brand-logo-card:nth-child(7n) .creator-brand-logo-card__mark {
+  transform: rotate(0.8deg);
+}
+
+.creator-brand-logo-card:nth-child(11n) .creator-brand-logo-card__mark {
+  transform: translateY(2px) rotate(0.45deg);
+}
+
+.creator-brand-logo-card:hover .creator-brand-logo-card__mark {
+  transform: translateY(-3px) rotate(0deg);
+  box-shadow: 0 16px 26px rgba(26, 26, 26, 0.08);
 }
 
 .creator-brand-logo-card__mark::before {
   content: "";
   position: absolute;
-  top: -5px;
+  top: -9px;
   left: 50%;
-  width: 42px;
-  height: 13px;
-  border-radius: 2px;
-  background: rgba(248, 198, 20, 0.34);
-  transform: translateX(-50%) rotate(calc((var(--brand-rank) - 4) * 0.4deg));
+  z-index: 2;
+  width: 52px;
+  height: 18px;
+  border: 1px solid rgba(26, 26, 26, 0.06);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 2px 6px rgba(26, 26, 26, 0.04);
+  pointer-events: none;
+  transform: translateX(-50%) rotate(-4deg);
+}
+
+.creator-brand-logo-card:nth-child(even) .creator-brand-logo-card__mark::before {
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.creator-brand-logo-card:nth-child(3n) .creator-brand-logo-card__mark::before {
+  left: 44%;
+}
+
+.creator-brand-logo-card:nth-child(4n) .creator-brand-logo-card__mark::before {
+  left: 58%;
 }
 
 .creator-brand-logo-card__mark img {
   position: relative;
   z-index: 1;
-  width: min(68%, 78px);
-  height: min(68%, 78px);
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   filter: saturate(0.92) contrast(1.02);
 }
@@ -1090,7 +1177,8 @@
 
 .creator-brand-logo-card h3 {
   max-width: 100%;
-  min-height: 28px;
+  min-height: 0;
+  height: var(--brand-logo-label-height, 30px);
   color: rgba(26, 26, 26, 0.68);
   font-family: var(--font-body);
   font-size: 11px;
@@ -1099,11 +1187,35 @@
   letter-spacing: 0.02em;
   text-align: center;
   text-transform: uppercase;
+  display: -webkit-box;
+  overflow: hidden;
   overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .creator-brand-logo-card:nth-child(-n + 12) h3 {
   color: rgba(26, 26, 26, 0.82);
+}
+
+.creator-brand-logo-card--more .creator-brand-logo-card__mark {
+  background: #fff;
+  border: 1px dashed rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  border-style: dashed;
+  box-shadow: 0 10px 20px rgba(26, 26, 26, 0.05);
+}
+
+.creator-brand-logo-card__more-text {
+  position: relative;
+  z-index: 1;
+  color: rgba(26, 26, 26, 0.72);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: 0;
+  text-transform: lowercase;
 }
 
 .creator-brand-card {
@@ -1317,6 +1429,15 @@
     padding: 9vh 0 12vh;
   }
 
+  .creator-kit--brands {
+    width: calc(100vw - 26px);
+    padding: 64px 0 88px;
+  }
+
+  .creator-kit--brands .creator-kit__header {
+    margin-bottom: 24px;
+  }
+
   .creator-metrics,
   .creator-brand-grid,
   .creator-love-grid {
@@ -1324,21 +1445,41 @@
   }
 
   .creator-brand-grid--logos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 8px;
+  }
+
+  .creator-kit--brands .creator-brand-grid--logos {
+    --brand-logo-tile-size: clamp(82px, calc((100vw - 42px) / 3), 112px);
+    --brand-logo-label-height: 26px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 8px;
   }
 
   .creator-brand-logo-card {
-    gap: 7px;
+    grid-template-rows: var(--brand-logo-tile-size) var(--brand-logo-label-height);
+    gap: 6px;
   }
 
   .creator-brand-logo-card__mark {
-    padding: 18px;
+    padding: 8px;
+    border-radius: 7px;
+  }
+
+  .creator-brand-logo-card__mark img {
+    width: 100%;
+    height: 100%;
   }
 
   .creator-brand-logo-card h3 {
-    min-height: 24px;
-    font-size: 10px;
+    height: var(--brand-logo-label-height);
+    font-size: 8.5px;
+    line-height: 1.12;
+    letter-spacing: 0.01em;
+  }
+
+  .creator-brand-logo-card__more-text {
+    font-size: clamp(15px, 5vw, 20px);
   }
 
   .creator-metric {

@@ -69,6 +69,7 @@
         'Talking my skin through it like "okay, we are just going to hydrate now" - full narration, every time.',
         'Doing my eyebrows before anything else, because a bad brow day ruins the whole GRWM.'
       ],
+      note: 'This is the part of getting ready I love most: not the final outfit, not the final face, but the small checks that make me feel collected before I step out. A good routine should feel like someone quietly putting your day back in order.',
       sign: 'make the routine feel like yours.'
     },
     supplements: {
@@ -92,6 +93,7 @@
         'Telling my clothes "it is bath time" every time I turn on the washing machine.',
         'Never talking bad about myself, even subconsciously, and always adding "it is not that difficult" after a train of what-if thoughts.'
       ],
+      note: 'The stack is not just supplements and protein bars. It is all the tiny systems that keep me soft, dramatic, hydrated, fed, amused, and functioning. If it makes the day feel a little less automatic, it belongs here.',
       sign: 'the whimsy is the whole point.'
     }
   };
