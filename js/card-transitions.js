@@ -476,6 +476,7 @@ class CardTransitions {
                     alt=""
                     loading="lazy"
                     referrerpolicy="no-referrer"
+                    onload="if (this.naturalWidth < 64 || this.naturalHeight < 64) this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback')"
                     onerror="this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback')"
                   >
                 ` : ''}

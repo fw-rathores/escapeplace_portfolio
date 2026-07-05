@@ -1,9 +1,8 @@
-import { cp, mkdir } from "node:fs/promises";
+import { access, cp, mkdir } from "node:fs/promises";
 
 const folders = [
   "SVG",
   "assets",
-  "cdn.jsdelivr.net",
   "fonts",
   "fonts.gstatic.com",
   "js",
@@ -12,6 +11,12 @@ const folders = [
 await mkdir("dist", { recursive: true });
 
 for (const folder of folders) {
+  try {
+    await access(folder);
+  } catch {
+    continue;
+  }
+
   await cp(folder, `dist/${folder}`, {
     recursive: true,
     force: true,
