@@ -1,6 +1,6 @@
 # Anu Srivastava Creator Portfolio
 
-A playful creator media kit and portfolio for Anu Srivastava, focused on fitness, matcha and ube, skincare, fashion, brand collaborations, reel formats, audience reach, and contact details.
+A playful creator media kit and portfolio for Anu Srivastava, focused on fitness, iced coffees, skincare, fashion, brand collaborations, reel formats, audience insights, and contact details.
 
 ## Requirements
 
@@ -32,10 +32,11 @@ The production build is written to `dist/`.
 
 The portfolio supports shareable page slugs:
 
-- `/reach`
+- `/insights`
+- `/brand-collabs`
 - `/work`
-- `/genres`
-- `/love`
+- `/why-me`
+- `/about`
 - `/contact`
 
 ## Deploying To Vercel
@@ -45,4 +46,4 @@ This project includes `vercel.json` for Vercel deployment. Use the Vite framewor
 - Build command: `npm run build`
 - Output directory: `dist`
 
-The Vercel rewrite sends direct visits to routes like `/genres` or `/contact` back to `index.html`, so the single-page app can render the correct section.
+The Vercel rewrite sends direct visits to routes like `/work` or `/contact` back to `index.html`, so the single-page app can render the correct section.

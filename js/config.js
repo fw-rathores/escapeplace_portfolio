@@ -39,9 +39,10 @@ const CONFIG = {
 
   navTargets: {
     hero:    { x: 2500, y: 2000 },
-    work:    { x: 2020, y: 1620 },
-    genres:  { x: 2030, y: 2235, elementId: 'stack-packaging', route: '/genres' },
-    about:   { x: 2500, y: 2205 },
+    insights: { x: 2020, y: 1620, elementId: 'stack-web', route: '/insights' },
+    brandCollabs: { x: 2845, y: 1640, elementId: 'stack-brand', route: '/brand-collabs' },
+    work:    { x: 2030, y: 2235, elementId: 'stack-packaging', route: '/work' },
+    whyMe:   { x: 2500, y: 2205, elementId: 'about', route: '/why-me' },
     contact: { x: 3020, y: 2290 },
   },
 
@@ -62,6 +63,7 @@ const CONFIG = {
   },
 
   creator: {
+    logoDevToken: 'pk_UJuddRiXRV6sGzfrs_nFZw',
     reachMetrics: [
       { label: 'Instagram reach', value: '2.1M', note: 'monthly discovery across reels and stories' },
       { label: 'Avg. reel views', value: '25K', note: 'fitness, skincare, fashion and cafe culture' },
@@ -352,7 +354,7 @@ const CONFIG = {
         tagline: 'Anu',
         highlightWord: 'Srivastava',
         tagline2: '',
-        subtitle: 'Fitness · Matcha/Ube · Skincare · Fashion Creator'
+        subtitle: 'Fitness · Iced Coffees · Skincare · Fashion Creator'
       }
     },
 
@@ -360,8 +362,8 @@ const CONFIG = {
     {
       id: 'illust-designer',
       type: 'image-sticker',
-      x: 2170,
-      y: 1925,
+      x: 2055,
+      y: 1780,
       width: 176,
       height: 176,
       depth: 2,
@@ -447,11 +449,11 @@ const CONFIG = {
       depth: 3,
       rotation: -2,
       data: {
-        stackName: 'Reach & Audience',
+        stackName: 'Insights',
         stackType: 'reach',
         shortcut: {
-          label: 'Reach & Audience',
-          slug: '/reach',
+          label: 'Insights',
+          slug: '/insights',
           folder: 'assets/anu/folders/folder-blue.png',
         },
         categoryTags: ['Instagram', 'Reels', 'Interactions'],
@@ -477,7 +479,7 @@ const CONFIG = {
         stackType: 'brands',
         shortcut: {
           label: 'Brand Collabs',
-          slug: '/work',
+          slug: '/brand-collabs',
           folder: 'assets/anu/folders/folder-pink.png',
         },
         categoryTags: ['Fitness', 'Beauty', 'Fashion'],
@@ -500,11 +502,11 @@ const CONFIG = {
       depth: 3,
       rotation: -1,
       data: {
-        stackName: 'Reel Genres',
+        stackName: 'Work',
         stackType: 'genres',
         shortcut: {
-          label: 'Reel Genres',
-          slug: '/genres',
+          label: 'Work',
+          slug: '/work',
           folder: 'assets/anu/folders/folder-lime.png',
         },
         categoryTags: ['Sponsored', 'UGC', 'Cafe'],
@@ -530,7 +532,7 @@ const CONFIG = {
       data: {
         variant: 'about',
         title: 'People love this',
-        content: 'Why work with me →',
+        content: 'Why me →',
         photo: 'assets/anu/anu-profile.png',
         photoAlt: 'Anu Srivastava'
       }
@@ -548,7 +550,7 @@ const CONFIG = {
         variant: 'contact',
         title: "Let's Collab",
         content: "UGC, reels, event visits, product launches and honest storytelling.",
-        email: 'hello@anusocial.com',
+        email: 'escapeplace1@gmail.com',
         cta: 'Pitch me',
         icon: '→'
       }
@@ -823,11 +825,11 @@ const CONFIG = {
 
   contact: {
     statement: "Let's make content people actually save.",
-    email: 'hello@anusocial.com',
+    email: 'escapeplace1@gmail.com',
     social: [
-      { platform: 'Instagram', url: 'https://instagram.com/', icon: 'instagram' },
-      { platform: 'X', url: 'https://x.com/', icon: 'x' },
-      { platform: 'Email', url: 'mailto:hello@anusocial.com', icon: 'email' }
+      { platform: 'Instagram', url: 'https://www.instagram.com/escapeplace_', icon: 'instagram' },
+      { platform: 'X', url: 'https://x.com/escapeplace__', icon: 'x' },
+      { platform: 'Email', url: 'mailto:escapeplace1@gmail.com', icon: 'email' }
     ]
   }
 };

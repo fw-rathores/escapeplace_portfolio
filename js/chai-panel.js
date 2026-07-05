@@ -14,19 +14,26 @@
 
   const notes = {
     coffee: {
-      eyebrow: 'cafe notes',
+      eyebrow: 'coffee ritual',
       title: 'Iced Coffee >>',
-      subtitle: 'drink-led reels, cafe visits, soft cravings',
-      margin: 'texture first.<br>sip second.',
-      intro: 'Use this page for cafe finds, iced coffee runs, matcha/ube orders, and drink-led collaborations that should feel saveable instead of scripted.',
-      listTitle: 'Notes to keep:',
+      subtitle: 'coffee time is sacred',
+      margin: 'do not<br>interrupt.',
+      intro: "The non-negotiable time of my day is my coffee time. Nobody is allowed to interrupt it. It's me and my coffee in my favourite glass first thing in the morning.",
+      listTitle: 'Coffee notes:',
       points: [
-        'Open on the actual drink or storefront so the reel has an immediate reason to exist.',
-        'Capture texture: ice, pour, foam, straw tap, first sip, sleeve, table setup.',
-        'Add a human cue: post-workout stop, fit check, friend reaction, or honest taste note.',
-        'Close with what to order, when to go, and why someone should save it.'
+        "For my daily coffee needs, Levista's Rs.2 sachets are my favourites.",
+        'The zero sugar Hazelnut and Caramel syrups from Good & More are always stocked up in my fridge.',
+        "The mocha pot coffee is reserved for days when it's raining. It's like a tradition.",
+        "I always order Vietnamese coffee at a new coffee shop, and if the condensed milk is not blended I know they know their coffee game.",
+        'Davidoff instant creams work really well for cold foam coffee.',
+        'The second coffee of my day always has a scoop of SuperYou protein.',
+        'Ube tastes best with cold brew coffee.',
+        'Matcha goes really well with oat milk.',
+        'When bored of protein shakes, I add a little matcha in it for a taste change.',
+        'Fresh fruit pulp in my fridge is a must-have for all my mango matcha and strawberry matcha needs.'
       ],
-      sign: 'save this for the next cafe plan.'
+      note: "I am still on a hunt for a good coffee place in Bangalore. Blue Tokai's Vietnamese coffee is one of the best I have tasted till now.",
+      sign: 'coffee time is sacred, everything else can wait.'
     },
     fashion: {
       eyebrow: 'style notes',
@@ -44,34 +51,48 @@
       sign: 'pretty is good, useful gets saved.'
     },
     grwm: {
-      eyebrow: 'beauty notes',
-      title: 'GRWM Notes',
-      subtitle: 'skincare, makeup, transitions, product texture',
-      margin: 'face card.<br>product proof.',
-      intro: 'Use this page for GRWM, skincare, and makeup-led content where the sequence should feel personal, pretty, and still useful for the viewer.',
-      listTitle: 'Notes to keep:',
+      eyebrow: 'tiny rituals',
+      title: 'GRWM',
+      subtitle: 'the in-between things',
+      margin: 'routine<br>over hype.',
+      intro: "GRWM isn't about the products, it's about the tiny rituals in between them that nobody puts in the caption. Here's mine:",
+      listTitle: 'The routine:',
       points: [
-        'Open with the final vibe or a bare-face starting frame so the transformation has a clear arc.',
-        'Show texture: pump, swatch, blend, tap-in, close-up, mirror check, and natural light finish.',
-        'Keep product mentions conversational with skin type, shade, scent, feel, or wear-time notes.',
-        'Close with the finished look and one reason people should save or try the routine.'
+        "The final face check happens in the phone camera because that's the lens that never lies.",
+        'Always keeping face tissues to wipe my face after washing it. Not trusting clean towels is my favourite hack to keep my face clean.',
+        'Spraying a little bit of perfume before going to bed to feel like the main character.',
+        'Reorganising my jewellery every month so nothing gets forgotten at the back of the drawer.',
+        'Keeping one cotton pad tucked in my makeup bag always, in case of emergency.',
+        'A box full of safety pins, hair pins, rubber bands and clutchers in my almirah for days everything goes haywire.',
+        'Socks are the first thing that gets in the organiser after wash days so I never lose one of them or my head over it.',
+        'Keeping staples in my wardrobes ready for days I am in a hurry. My go-to is Uniqlo.',
+        'Talking my skin through it like "okay, we are just going to hydrate now" - full narration, every time.',
+        'Doing my eyebrows before anything else, because a bad brow day ruins the whole GRWM.'
       ],
-      sign: 'make the routine feel real.'
+      sign: 'make the routine feel like yours.'
     },
     supplements: {
-      eyebrow: 'fitness notes',
+      eyebrow: 'lifemaxxing notes',
       title: 'Lifemaxxing Stack',
-      subtitle: 'supplements, routines, gym context, wellness habits',
-      margin: 'routine > hype.',
-      intro: 'Use this page for supplement, fitness, and wellness content where the product needs context: when it fits into the day, what it pairs with, and why it belongs in the routine.',
-      listTitle: 'Notes to keep:',
+      subtitle: 'the whimsy is the whole point',
+      margin: 'whimsy<br>always.',
+      intro: "Lifemaxxing isn't about following what the internet trend tells you to, it's about adding whimsy in everything you do and sticking to it. Here's my secret of what I do to keep the whimsy alive:",
+      listTitle: 'Whimsy rules:',
       points: [
-        'Anchor the product to a real moment: pre-gym, post-gym, morning routine, or reset day.',
-        'Show the stack cleanly: label, scoop, bottle, shaker, bag, gym floor, desk, or fridge setup.',
-        'Keep the claim language grounded and talk about habit fit, taste, ease, and consistency.',
-        'End with a routine cue people can copy, not a hard sell.'
+        'Adding Diet Coke to my SuperYou Protein Shake to make my Coke float.',
+        "Eating three pieces of green chilli every time I feel like crying. Don't ask why three, it's a system.",
+        'Leaving one of my soft toys in charge every time I leave the house.',
+        'I drink my coffee in wine glasses and my Diet Coke in whiskey glasses.',
+        'On weekends, I make a big deal of my breakfasts: coffee in the fanciest glass, plates well aligned, fresh flowers and a matching pajama set.',
+        'Setting up reminders on my phone to call my friends and check on them.',
+        "Always keeping a SuperYou protein bar in my bag before leaving for anywhere. Can't compromise on the protein requirement.",
+        'Sending a long paragraph to an internet stranger about how they are doing good in life.',
+        'Sprinkling a whole Max Protein bar on my ice cream to make it protein-friendly.',
+        'Doing a monthly one-on-one with myself and noting down the areas of improvement.',
+        'Telling my clothes "it is bath time" every time I turn on the washing machine.',
+        'Never talking bad about myself, even subconsciously, and always adding "it is not that difficult" after a train of what-if thoughts.'
       ],
-      sign: 'make the habit look doable.'
+      sign: 'the whimsy is the whole point.'
     }
   };
 
@@ -111,8 +132,8 @@
       </div>
 
       <div class="chai-note-pad" aria-label="Notes area">
-        <p class="chai-note-pad__label">Open notes</p>
-        <p>Leave campaign hooks, talking points, shot ideas, or product details here when building this page out.</p>
+        <p class="chai-note-pad__label">Anu's note</p>
+        <p>${note.note || 'A little ritual page for the things that make the routine feel personal.'}</p>
       </div>
 
       <div class="chai-closing-note">

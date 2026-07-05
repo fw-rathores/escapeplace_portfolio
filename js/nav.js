@@ -22,7 +22,15 @@ class Navigation {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = link.dataset.navTarget;
-        const openedRoute = this.openRoute(link);
+        const isMobileNav = Boolean(link.closest('.mobile-nav'));
+        const openedRoute = isMobileNav ? false : this.openRoute(link);
+
+        if (isMobileNav) {
+          this.navigateToMobileTarget(link, target);
+          this._setActive(link);
+          return;
+        }
+
         if (!openedRoute) this.navigateTo(target);
         this._setActive(link);
       });
@@ -35,6 +43,25 @@ class Navigation {
 
     window.__cardTransitions.openCard(elementId);
     return true;
+  }
+
+  navigateToMobileTarget(link, targetName) {
+    const elementId = link.dataset.elementId || CONFIG.navTargets[targetName]?.elementId;
+    if (!elementId) {
+      this.navigateTo(targetName);
+      return;
+    }
+
+    const el = document.querySelector(`[data-element-id="${elementId}"]`);
+    const x = Number(el?.dataset.originX);
+    const y = Number(el?.dataset.originY);
+
+    if (Number.isFinite(x) && Number.isFinite(y)) {
+      this.engine.panTo(x, y, 1);
+      return;
+    }
+
+    this.navigateTo(targetName);
   }
 
   navigateTo(targetName) {

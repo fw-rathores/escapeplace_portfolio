@@ -12,10 +12,10 @@ class CardTransitions {
     this.activeElementId = null;
     this.backBtn = document.querySelector('.page-back');
     this.routeToElement = new Map([
-      ['/reach', 'stack-web'],
-      ['/work', 'stack-brand'],
-      ['/genres', 'stack-packaging'],
-      ['/love', 'about'],
+      ['/insights', 'stack-web'],
+      ['/brand-collabs', 'stack-brand'],
+      ['/work', 'stack-packaging'],
+      ['/why-me', 'about'],
       ['/contact', 'contact'],
     ]);
     this.elementToRoute = new Map(
@@ -454,6 +454,7 @@ class CardTransitions {
     const brands = CONFIG.creator.brandPartners.map((name) => ({
       name,
       domain: logoDomains[name],
+      logoDevUrl: logoDomains[name] ? this._getBrandLogoDevUrl(logoDomains[name]) : '',
       initials: this._getBrandInitials(name),
     }));
 
@@ -476,8 +477,10 @@ class CardTransitions {
                     alt=""
                     loading="lazy"
                     referrerpolicy="no-referrer"
-                    onload="if (this.naturalWidth < 64 || this.naturalHeight < 64) this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback')"
-                    onerror="this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback')"
+                    data-logo-source="favicon"
+                    data-logo-dev-src="${brand.logoDevUrl}"
+                    onload="if (this.dataset.logoSource === 'favicon' && (this.naturalWidth < 64 || this.naturalHeight < 64) && this.dataset.logoDevSrc) { this.dataset.logoSource = 'logo-dev'; this.src = this.dataset.logoDevSrc; } else if (this.dataset.logoSource === 'logo-dev' && (this.naturalWidth < 64 || this.naturalHeight < 64)) { this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback'); }"
+                    onerror="if (this.dataset.logoSource === 'favicon' && this.dataset.logoDevSrc) { this.dataset.logoSource = 'logo-dev'; this.src = this.dataset.logoDevSrc; } else { this.closest('.creator-brand-logo-card').classList.add('creator-brand-logo-card--fallback'); }"
                   >
                 ` : ''}
               </div>
@@ -494,6 +497,20 @@ class CardTransitions {
 
   _getBrandLogoUrl(domain) {
     return `https://www.google.com/s2/favicons?sz=128&domain=${encodeURIComponent(domain)}`;
+  }
+
+  _getBrandLogoDevUrl(domain) {
+    const token = CONFIG.creator.logoDevToken;
+    if (!token) return '';
+
+    const params = new URLSearchParams({
+      token,
+      size: '128',
+      format: 'png',
+      fallback: '404',
+    });
+
+    return `https://img.logo.dev/${encodeURIComponent(domain)}?${params.toString()}`;
   }
 
   _getBrandInitials(name) {
