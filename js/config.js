@@ -13,6 +13,18 @@ const CONFIG = {
     height: 4000,
     centerX: 2500,
     centerY: 2000,
+    bounds: {
+      left: 1700,
+      right: 3300,
+      top: 1200,
+      bottom: 2800,
+    },
+    mobileBounds: {
+      left: 1900,
+      right: 3050,
+      top: 1080,
+      bottom: 2750,
+    },
   },
 
   startX: 2500,

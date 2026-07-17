@@ -46,6 +46,7 @@ class CanvasEngine {
     this._onPointerMove = this._onPointerMove.bind(this);
     this._onPointerUp = this._onPointerUp.bind(this);
     this._onWheel = this._onWheel.bind(this);
+    this._onResize = this._onResize.bind(this);
 
     this._bindEvents();
   }
@@ -56,6 +57,7 @@ class CanvasEngine {
     window.addEventListener('pointerup', this._onPointerUp);
     window.addEventListener('pointercancel', this._onPointerUp);
     this.viewport.addEventListener('wheel', this._onWheel, { passive: false });
+    window.addEventListener('resize', this._onResize);
 
     // Prevent context menu on long press
     this.viewport.addEventListener('contextmenu', e => e.preventDefault());
@@ -209,7 +211,42 @@ class CanvasEngine {
     }
   }
 
+  _onResize() {
+    this._applyTransform();
+    if (this.onPanUpdate) this.onPanUpdate(this.panX, this.panY);
+  }
+
+  _clampPan() {
+    const canvasConfig = CONFIG.canvas || {};
+    const bounds = window.innerWidth < 768 && canvasConfig.mobileBounds
+      ? canvasConfig.mobileBounds
+      : canvasConfig.bounds;
+
+    if (!bounds) return;
+
+    const vw = this.viewport.clientWidth || window.innerWidth;
+    const vh = this.viewport.clientHeight || window.innerHeight;
+    const halfWorldWidth = vw / (2 * this.zoom);
+    const halfWorldHeight = vh / (2 * this.zoom);
+    const currentCenterX = (vw / 2) / this.zoom - this.panX;
+    const currentCenterY = (vh / 2) / this.zoom - this.panY;
+    const minCenterX = bounds.left + halfWorldWidth;
+    const maxCenterX = bounds.right - halfWorldWidth;
+    const minCenterY = bounds.top + halfWorldHeight;
+    const maxCenterY = bounds.bottom - halfWorldHeight;
+    const boundedCenterX = minCenterX <= maxCenterX
+      ? clamp(currentCenterX, minCenterX, maxCenterX)
+      : (bounds.left + bounds.right) / 2;
+    const boundedCenterY = minCenterY <= maxCenterY
+      ? clamp(currentCenterY, minCenterY, maxCenterY)
+      : (bounds.top + bounds.bottom) / 2;
+
+    this.panX = (vw / 2) / this.zoom - boundedCenterX;
+    this.panY = (vh / 2) / this.zoom - boundedCenterY;
+  }
+
   _applyTransform() {
+    this._clampPan();
     // World transform: translate then scale
     const tx = this.panX * this.zoom;
     const ty = this.panY * this.zoom;
@@ -309,5 +346,6 @@ class CanvasEngine {
     window.removeEventListener('pointerup', this._onPointerUp);
     window.removeEventListener('pointercancel', this._onPointerUp);
     this.viewport.removeEventListener('wheel', this._onWheel);
+    window.removeEventListener('resize', this._onResize);
   }
 }

@@ -6,6 +6,9 @@
 (function () {
   'use strict';
 
+  const socialPreviewMode = new URLSearchParams(window.location.search).get('social-preview') === '1';
+  if (socialPreviewMode) document.documentElement.classList.add('social-preview-mode');
+
   // ── Module references ──
   let engine, placer, parallax, cursor, magnetic, nav, transitions, minimap;
 
@@ -29,8 +32,15 @@
     placer = new ElementPlacer(world);
     placer.placeAll(CONFIG.elements);
 
-    // 3. Center on hero
-    engine.centerOnHero();
+    // 3. Center the interactive canvas, or frame the full composition for social capture.
+    if (socialPreviewMode) {
+      engine.zoom = 0.8;
+      engine.panX = (viewport.clientWidth / 2) / engine.zoom - 2500;
+      engine.panY = (viewport.clientHeight / 2) / engine.zoom - 2015;
+      engine._applyTransform();
+    } else {
+      engine.centerOnHero();
+    }
 
     // 4. Parallax
     parallax = new ParallaxEngine(engine);
@@ -76,16 +86,23 @@
     };
 
     // 11. Reveal immediately; there is no loading screen.
-    revealElements();
-    if (nav) nav.reveal();
-    showDragHint();
+    if (socialPreviewMode) {
+      document.querySelectorAll('.canvas-element').forEach(el => el.classList.add('revealed'));
+      document.querySelectorAll('.highlight-path').forEach(path => { path.style.opacity = '0.7'; });
+    } else {
+      revealElements();
+      if (nav) nav.reveal();
+      showDragHint();
+    }
     if (minimap) minimap.update();
     if (transitions) transitions.openInitialRoute();
 
     // Start idle animations after reveal
-    setTimeout(() => {
-      startIdleAnimations();
-    }, 900);
+    if (!socialPreviewMode) {
+      setTimeout(() => {
+        startIdleAnimations();
+      }, 900);
+    }
   }
 
   // ── Reveal elements with stagger ──

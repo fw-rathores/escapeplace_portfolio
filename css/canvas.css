@@ -58,6 +58,39 @@
   background-size: 24px 24px;
 }
 
+/* Deterministic, chrome-free framing used only to capture social metadata art. */
+.social-preview-mode .social-dock,
+.social-preview-mode .claude-badge,
+.social-preview-mode .profile-avatar,
+.social-preview-mode .drag-hint,
+.social-preview-mode .custom-cursor,
+.social-preview-mode .mobile-nav,
+.social-preview-mode .floating-toolbar,
+.social-preview-mode .canvas-name {
+  display: none !important;
+}
+
+.social-preview-mode .canvas-element,
+.social-preview-mode .highlight-path {
+  animation: none !important;
+  transition: none !important;
+}
+
+.social-preview-mode .hero-headline {
+  max-width: 760px;
+  font-size: 5.25rem;
+}
+
+.social-preview-mode .hero-subtitle {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.social-preview-mode .highlight-path {
+  opacity: 0.72 !important;
+  clip-path: inset(0 0 0 0) !important;
+}
+
 /* Drag hint */
 .drag-hint {
   position: fixed;
