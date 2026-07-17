@@ -53,8 +53,14 @@ class Navigation {
     }
 
     const el = document.querySelector(`.canvas-element[data-element-id="${elementId}"]`);
-    const x = Number(el?.dataset.originX);
-    const y = Number(el?.dataset.originY);
+    if (!el) {
+      this.navigateTo(targetName);
+      return;
+    }
+
+    const rect = el.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / this.engine.zoom - this.engine.panX;
+    const y = (rect.top + rect.height / 2) / this.engine.zoom - this.engine.panY;
 
     if (Number.isFinite(x) && Number.isFinite(y)) {
       this.engine.panTo(x, y, 1);

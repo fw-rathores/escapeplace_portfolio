@@ -24,10 +24,16 @@ const CONFIG = {
       y: 90,
     },
     mobileBounds: {
-      left: 2142,
-      right: 2858,
-      top: 1308,
-      bottom: 2766,
+      left: 1970,
+      right: 3055,
+      top: 940,
+      bottom: 3210,
+    },
+    mobileNavCenterBounds: {
+      left: 2265,
+      right: 2760,
+      top: 1575,
+      bottom: 2585,
     },
   },
 

@@ -236,6 +236,17 @@ class CanvasEngine {
     let minCenterY = bounds.top + halfWorldHeight;
     let maxCenterY = bounds.bottom - halfWorldHeight;
 
+    // Navbar targets must remain centerable at every mobile viewport size.
+    // Extend the center range rather than making small phones share huge
+    // physical bounds designed for tablet-sized mobile breakpoints.
+    if (isMobile && canvasConfig.mobileNavCenterBounds) {
+      const navBounds = canvasConfig.mobileNavCenterBounds;
+      minCenterX = Math.min(minCenterX, navBounds.left);
+      maxCenterX = Math.max(maxCenterX, navBounds.right);
+      minCenterY = Math.min(minCenterY, navBounds.top);
+      maxCenterY = Math.max(maxCenterY, navBounds.bottom);
+    }
+
     // Wide desktop viewports can be larger than the composition bounds. Keep
     // a small, consistent amount of panning available instead of locking it.
     if (!isMobile && canvasConfig.desktopPanAllowance) {
