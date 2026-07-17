@@ -218,7 +218,8 @@ class CanvasEngine {
 
   _clampPan() {
     const canvasConfig = CONFIG.canvas || {};
-    const bounds = window.innerWidth < 768 && canvasConfig.mobileBounds
+    const isMobile = window.innerWidth < 768;
+    const bounds = isMobile && canvasConfig.mobileBounds
       ? canvasConfig.mobileBounds
       : canvasConfig.bounds;
 
@@ -230,10 +231,25 @@ class CanvasEngine {
     const halfWorldHeight = vh / (2 * this.zoom);
     const currentCenterX = (vw / 2) / this.zoom - this.panX;
     const currentCenterY = (vh / 2) / this.zoom - this.panY;
-    const minCenterX = bounds.left + halfWorldWidth;
-    const maxCenterX = bounds.right - halfWorldWidth;
-    const minCenterY = bounds.top + halfWorldHeight;
-    const maxCenterY = bounds.bottom - halfWorldHeight;
+    let minCenterX = bounds.left + halfWorldWidth;
+    let maxCenterX = bounds.right - halfWorldWidth;
+    let minCenterY = bounds.top + halfWorldHeight;
+    let maxCenterY = bounds.bottom - halfWorldHeight;
+
+    // Wide desktop viewports can be larger than the composition bounds. Keep
+    // a small, consistent amount of panning available instead of locking it.
+    if (!isMobile && canvasConfig.desktopPanAllowance) {
+      const boundsCenterX = (bounds.left + bounds.right) / 2;
+      const boundsCenterY = (bounds.top + bounds.bottom) / 2;
+      const allowanceX = canvasConfig.desktopPanAllowance.x / this.zoom;
+      const allowanceY = canvasConfig.desktopPanAllowance.y / this.zoom;
+
+      minCenterX = Math.min(minCenterX, boundsCenterX - allowanceX);
+      maxCenterX = Math.max(maxCenterX, boundsCenterX + allowanceX);
+      minCenterY = Math.min(minCenterY, boundsCenterY - allowanceY);
+      maxCenterY = Math.max(maxCenterY, boundsCenterY + allowanceY);
+    }
+
     const boundedCenterX = minCenterX <= maxCenterX
       ? clamp(currentCenterX, minCenterX, maxCenterX)
       : (bounds.left + bounds.right) / 2;

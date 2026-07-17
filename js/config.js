@@ -19,6 +19,10 @@ const CONFIG = {
       top: 1610,
       bottom: 2425,
     },
+    desktopPanAllowance: {
+      x: 110,
+      y: 90,
+    },
     mobileBounds: {
       left: 2115,
       right: 2880,
