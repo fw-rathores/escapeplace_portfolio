@@ -24,9 +24,9 @@ const CONFIG = {
       y: 90,
     },
     mobileBounds: {
-      left: 2115,
-      right: 2880,
-      top: 1265,
+      left: 2142,
+      right: 2858,
+      top: 1308,
       bottom: 2766,
     },
   },
